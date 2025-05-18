@@ -200,6 +200,7 @@
       padding: 15px;
       border-radius: 6px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
     .method-card h4 {
@@ -305,6 +306,112 @@
       background-color: #f8f9fa;
       padding: 3px;
       border-bottom: 2px solid var(--primary);
+    }
+
+    /* 新增投票系統樣式 */
+    .vote-checkbox {
+      display: none;
+    }
+
+    .vote-button {
+      display: block;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .vote-button:hover {
+      background-color: #3a6b8a;
+    }
+
+    .vote-button.selected {
+      background-color: var(--primary);
+    }
+
+    .vote-count {
+      display: block;
+      margin-top: 8px;
+      font-weight: bold;
+      color: var(--secondary);
+      text-align: center;
+    }
+
+    .vote-progress {
+      height: 6px;
+      background-color: #e9ecef;
+      border-radius: 3px;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+
+    .vote-bar {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0;
+      transition: width 0.5s ease;
+    }
+
+    .vote-message {
+      color: var(--primary);
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .vote-limit-message {
+      display: none;
+      color: var(--primary);
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .vote-controls {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .vote-submit {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .vote-submit:hover {
+      background-color: #14253d;
+    }
+
+    .vote-results {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+
+    .vote-header {
+      text-align: center;
+      margin: 20px 0;
+      color: var(--secondary);
+    }
+
+    .vote-subheader {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-style: italic;
     }
 
     /* 響應式設計 */
@@ -530,32 +637,62 @@
       <div id="implementation" class="tab-content">
         <h2>建議配置方式與實施策略</h2>
         
+        <h3 class="vote-header">請投票選擇您支持的配置方案</h3>
+        <p class="vote-subheader">（您可以選擇1-3個支持的方案，點擊投票後可以查看目前的投票結果）</p>
+        
         <div class="implementation">
           <h3>配置方式選項</h3>
           <p>此藥物Cyanokit®目前單價較高約四萬五千元，效期三年，可以視資源多寡考慮幾種配置方式：</p>
           
           <div class="implementation-methods">
-            <div class="method-card">
+            <div class="method-card" id="option1">
               <h4>方案一：各大隊配置</h4>
               <p>配置在各大隊，由輪值的中隊攜帶至火災現場。</p>
               <p><strong>優點：</strong>覆蓋範圍廣，反應時間快</p>
               <p><strong>缺點：</strong>資源需求大，成本較高</p>
+              <input type="checkbox" id="vote1" class="vote-checkbox">
+              <label for="vote1" class="vote-button" onclick="toggleVote(1)">投票支持</label>
+              <span class="vote-count" id="count1">0 票</span>
+              <div class="vote-progress">
+                <div class="vote-bar" id="bar1"></div>
+              </div>
             </div>
             
-            <div class="method-card">
+            <div class="method-card" id="option2">
               <h4>方案二：特搜分隊配置</h4>
               <p>配置在TP PLUS或RIT特搜分隊，攜帶至火災現場，如沒有PLUS的大隊需PLUS及RIT分隊輪值覆蓋。</p>
               <p><strong>優點：</strong>資源集中，專業人員使用</p>
               <p><strong>缺點：</strong>覆蓋時間可能有限</p>
+              <input type="checkbox" id="vote2" class="vote-checkbox">
+              <label for="vote2" class="vote-button" onclick="toggleVote(2)">投票支持</label>
+              <span class="vote-count" id="count2">0 票</span>
+              <div class="vote-progress">
+                <div class="vote-bar" id="bar2"></div>
+              </div>
             </div>
             
-            <div class="method-card">
+            <div class="method-card" id="option3">
               <h4>方案三：醫院儲備網合作</h4>
               <p>與衛福部解毒劑儲備網合作，放置在轄區醫院，派車前往急診拿取。</p>
               <p><strong>優點：</strong>減少藥物過期浪費，成本分擔</p>
               <p><strong>缺點：</strong>取藥時間延長</p>
+              <input type="checkbox" id="vote3" class="vote-checkbox">
+              <label for="vote3" class="vote-button" onclick="toggleVote(3)">投票支持</label>
+              <span class="vote-count" id="count3">0 票</span>
+              <div class="vote-progress">
+                <div class="vote-progress">
+                  <div class="vote-bar" id="bar3"></div>
+                </div>
+              </div>
             </div>
           </div>
+          
+          <div class="vote-limit-message" id="voteLimit">您最多只能選擇3個方案</div>
+          <div class="vote-controls">
+            <button class="vote-submit" onclick="submitVotes()">確認投票</button>
+          </div>
+          <div class="vote-message" id="voteMessage">感謝您的投票！您已成功支持所選方案。</div>
+          <div class="vote-results" id="voteResults"></div>
           
           <h3>優先應用情境</h3>
           <p>在藥物數量並不多時，可選擇以下情況攜帶到火災現場：</p>
@@ -606,7 +743,166 @@
       document.getElementById(tabName).className += " active";
       evt.currentTarget.className += " active";
     }
-  </script>
-</body>
 
-</html>
+    // 投票系統相關函數
+    // 使用localStorage儲存投票資料
+    let votes = {
+      option1: localStorage.getItem('votes_option1') ? parseInt(localStorage.getItem('votes_option1')) : 0,
+      option2: localStorage.getItem('votes_option2') ? parseInt(localStorage.getItem('votes_option2')) : 0,
+      option3: localStorage.getItem('votes_option3') ? parseInt(localStorage.getItem('votes_option3')) : 0
+    };
+
+    let userVotes = {
+      option1: localStorage.getItem('user_voted_option1') === 'true',
+      option2: localStorage.getItem('user_voted_option2') === 'true',
+      option3: localStorage.getItem('user_voted_option3') === 'true'
+    };
+
+    let selectedOptions = {
+      option1: false,
+      option2: false,
+      option3: false
+    };
+
+    // 頁面載入時顯示現有投票結果
+    window.onload = function() {
+      updateVoteCounts();
+      
+      // 如果用戶已投票，則顯示結果並標記已選選項
+      if (hasVoted()) {
+        document.getElementById('voteMessage').style.display = 'block';
+        document.getElementById('voteResults').innerHTML = getVoteResultSummary();
+        
+        // 標記已選選項
+        if (userVotes.option1) toggleVote(1, true);
+        if (userVotes.option2) toggleVote(2, true);
+        if (userVotes.option3) toggleVote(3, true);
+      }
+    };
+    
+    // 檢查用戶是否已投票
+    function hasVoted() {
+      return userVotes.option1 || userVotes.option2 || userVotes.option3;
+    }
+    
+    // 更新投票計數顯示
+    function updateVoteCounts() {
+      document.getElementById('count1').textContent = votes.option1 + ' 票';
+      document.getElementById('count2').textContent = votes.option2 + ' 票';
+      document.getElementById('count3').textContent = votes.option3 + ' 票';
+      
+      // 更新進度條
+      const total = votes.option1 + votes.option2 + votes.option3;
+      if (total > 0) {
+        document.getElementById('bar1').style.width = (votes.option1 / total * 100) + '%';
+        document.getElementById('bar2').style.width = (votes.option2 / total * 100) + '%';
+        document.getElementById('bar3').style.width = (votes.option3 / total * 100) + '%';
+      }
+    }
+    
+    // 切換選擇狀態
+    function toggleVote(optionNum, isPageLoad) {
+      const optionKey = 'option' + optionNum;
+      const button = document.querySelector(`label[for="vote${optionNum}"]`);
+      const checkbox = document.getElementById(`vote${optionNum}`);
+      
+      // 如果是頁面載入且用戶已投票，直接顯示已選狀態
+      if (isPageLoad && userVotes[optionKey]) {
+        button.classList.add('selected');
+        button.textContent = '已選擇';
+        checkbox.checked = true;
+        selectedOptions[optionKey] = true;
+        return;
+      }
+      
+      // 如果用戶已投票且不是頁面載入，不允許再次修改
+      if (hasVoted() && !isPageLoad) {
+        alert('您已經完成投票，無法再修改選擇。');
+        return;
+      }
+      
+      // 檢查已選選項數量
+      let selectedCount = Object.values(selectedOptions).filter(val => val).length;
+      
+      if (!selectedOptions[optionKey] && selectedCount >= 3) {
+        document.getElementById('voteLimit').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('voteLimit').style.display = 'none';
+        }, 3000);
+        return;
+      }
+      
+      // 切換選擇狀態
+      selectedOptions[optionKey] = !selectedOptions[optionKey];
+      checkbox.checked = selectedOptions[optionKey];
+      
+      if (selectedOptions[optionKey]) {
+        button.classList.add('selected');
+        button.textContent = '已選擇';
+      } else {
+        button.classList.remove('selected');
+        button.textContent = '投票支持';
+      }
+    }
+    
+    // 提交投票
+    function submitVotes() {
+      // 檢查是否已投票
+      if (hasVoted()) {
+        alert('您已經完成投票，感謝您的參與！');
+        return;
+      }
+      
+      // 檢查是否至少選擇了一個選項
+      const hasSelection = selectedOptions.option1 || selectedOptions.option2 || selectedOptions.option3;
+      if (!hasSelection) {
+        alert('請至少選擇一個您支持的方案！');
+        return;
+      }
+      
+      // 更新投票
+      if (selectedOptions.option1) {
+        votes.option1++;
+        userVotes.option1 = true;
+        localStorage.setItem('votes_option1', votes.option1);
+        localStorage.setItem('user_voted_option1', 'true');
+      }
+      
+      if (selectedOptions.option2) {
+        votes.option2++;
+        userVotes.option2 = true;
+        localStorage.setItem('votes_option2', votes.option2);
+        localStorage.setItem('user_voted_option2', 'true');
+      }
+      
+      if (selectedOptions.option3) {
+        votes.option3++;
+        userVotes.option3 = true;
+        localStorage.setItem('votes_option3', votes.option3);
+        localStorage.setItem('user_voted_option3', 'true');
+      }
+      
+      // 更新顯示
+      updateVoteCounts();
+      document.getElementById('voteMessage').style.display = 'block';
+      document.getElementById('voteResults').innerHTML = getVoteResultSummary();
+      
+      // 禁用投票按鈕
+      document.querySelectorAll('.vote-button').forEach(button => {
+        if (!button.classList.contains('selected')) {
+          button.style.opacity = '0.5';
+          button.style.cursor = 'not-allowed';
+        }
+      });
+    }
+    
+    // 獲取投票結果摘要
+    function getVoteResultSummary() {
+      const total = votes.option1 + votes.option2 + votes.option3;
+      return `
+        <p>目前總投票數：${total} 票</p>
+        <p>方案一：${votes.option1} 票 (${Math.round(votes.option1 / total * 100 || 0)}%)</p>
+        <p>方案二：${votes.option2} 票 (${Math.round(votes.option2 / total * 100 || 0)}%)</p>
+        <p>方案三：${votes.option3} 票 (${Math.round(votes.option3 / total * 100 || 0)}%)</p>
+      `;
+    }
