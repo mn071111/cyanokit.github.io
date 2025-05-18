@@ -164,17 +164,16 @@
       background-color: #f5f5f5;
     }
 
-    .chart-container {
-      height: 300px;
-      margin: 20px 0;
-    }
-
     .quote {
       background-color: var(--light);
-      padding: 20px;
+      padding: 25px;
       border-left: 5px solid var(--primary);
-      margin: 20px 0;
+      margin: 30px 0;
       font-style: italic;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .implementation {
@@ -300,6 +299,14 @@
       font-weight: bold;
     }
 
+    .highlight-quote {
+      color: var(--primary);
+      font-size: 1.3rem;
+      background-color: #f8f9fa;
+      padding: 3px;
+      border-bottom: 2px solid var(--primary);
+    }
+
     /* 響應式設計 */
     @media screen and (max-width: 768px) {
       .timeline::after {
@@ -419,10 +426,6 @@
             </tr>
           </tbody>
         </table>
-
-        <div class="chart-container">
-          <canvas id="survivalChart"></canvas>
-        </div>
       </div>
 
       <div id="international" class="tab-content">
@@ -460,10 +463,6 @@
             </tr>
           </tbody>
         </table>
-
-        <div class="chart-container">
-          <canvas id="globalImplementationChart"></canvas>
-        </div>
       </div>
 
       <div id="timeline" class="tab-content">
@@ -578,8 +577,8 @@
         </div>
         
         <div class="quote">
-          <p>「不準備，是選擇放棄可能活下來的人。」</p>
-          <p>"To not prepare is to give up on someone who could've survived."</p>
+          <p><span class="highlight-quote">「不準備，是選擇放棄可能活下來的人。」</span></p>
+          <p><span class="highlight-quote">"To not prepare is to give up on someone who could've survived."</span></p>
         </div>
       </div>
     </div>
@@ -589,7 +588,6 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // 切換標籤頁
     function openTab(evt, tabName) {
@@ -608,94 +606,6 @@
       document.getElementById(tabName).className += " active";
       evt.currentTarget.className += " active";
     }
-
-    // 圖表數據
-    document.addEventListener('DOMContentLoaded', function() {
-      // 存活率圖表
-      var survivalCtx = document.getElementById('survivalChart').getContext('2d');
-      var survivalChart = new Chart(survivalCtx, {
-        type: 'bar',
-        data: {
-          labels: ['使用羥鈷胺', '傳統治療'],
-          datasets: [{
-            label: '火場吸入氰化物中毒患者存活率',
-            data: [72, 45],
-            backgroundColor: [
-              '#457b9d',
-              '#e63946'
-            ],
-            borderColor: [
-              '#1d3557',
-              '#1d3557'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              title: {
-                display: true,
-                text: '存活率(%)'
-              }
-            }
-          },
-          plugins: {
-            title: {
-              display: true,
-              text: 'Borron SW et al., 2007 研究結果',
-              font: {
-                size: 16
-              }
-            }
-          }
-        }
-      });
-
-      // 全球實施情況圖表
-      var implementationCtx = document.getElementById('globalImplementationChart').getContext('2d');
-      var implementationChart = new Chart(implementationCtx, {
-        type: 'pie',
-        data: {
-          labels: ['已實施', '進行中', '尚無實施'],
-          datasets: [{
-            label: '全球消防單位羥鈷胺實施情況',
-            data: [42, 28, 30],
-            backgroundColor: [
-              '#457b9d',
-              '#a8dadc',
-              '#e63946'
-            ],
-            borderColor: [
-              '#ffffff',
-              '#ffffff',
-              '#ffffff'
-            ],
-            borderWidth: 2
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            title: {
-              display: true,
-              text: '主要國家消防單位羥鈷胺導入情況估計',
-              font: {
-                size: 16
-              }
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }
-      });
-    });
   </script>
 </body>
 
