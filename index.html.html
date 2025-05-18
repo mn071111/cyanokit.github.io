@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>羥鈷胺在火場中毒救治研究摘要</title>
+  <style>
+    :root {
+      --primary: #e63946;
+      --secondary: #1d3557;
+      --light: #f1faee;
+      --accent: #457b9d;
+      --background: #f8f9fa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    body {
+      background-color: var(--background);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background-color: var(--secondary);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h2 {
+      color: var(--secondary);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 8px;
+    }
+
+    .card ul {
+      list-style-position: inside;
+      margin-left: 10px;
+    }
+
+    .card li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .tabs {
+      margin-bottom: 30px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tab-button {
+      padding: 12px 20px;
+      background-color: #e9ecef;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .tab-button.active {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .chart-container {
+      height: 300px;
+      margin: 20px 0;
+    }
+
+    .quote {
+      background-color: var(--light);
+      padding: 20px;
+      border-left: 5px solid var(--primary);
+      margin: 20px 0;
+      font-style: italic;
+    }
+
+    .implementation {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .implementation h3 {
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+
+    .implementation-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .method-card {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .method-card h4 {
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .scenario {
+      margin-top: 5px;
+      padding: 10px;
+      background-color: #e9ecef;
+      border-radius: 4px;
+    }
+
+    .scenario-title {
+      font-weight: bold;
+      color: var(--secondary);
+      margin-bottom: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: var(--secondary);
+      color: white;
+      border-radius: 8px;
+    }
+
+    /* 時間軸樣式 */
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: var(--accent);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid var(--primary);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .left::after {
+      right: -10px;
+    }
+
+    .right::after {
+      left: -10px;
+    }
+
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-content h3 {
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    .timeline-content .date {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* 響應式設計 */
+    @media screen and (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .timeline-item::after {
+        left: 21px;
+      }
+
+      .left::after, .right::after {
+        left: 21px;
+      }
+
+      .right {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>羥鈷胺(Hydroxocobalamin)在火場中毒救治</h1>
+      <p class="subtitle">從濃煙中奪回生命：專業急救與解毒策略</p>
+    </header>
+
+    <div class="dashboard">
+      <div class="card">
+        <h2>火場致命因子</h2>
+        <ul>
+          <li>大多數火災死亡原因<span class="highlight">非燒傷，而是吸入有毒氣體</span></li>
+          <li>主要有毒氣體：<span class="highlight">一氧化碳(CO)、氰化氫(HCN)</span></li>
+          <li>氰化氫來源：塑膠、泡棉、纖維建材燃燒(現代家具)</li>
+          <li>103-112新北市十年間因火災有害氣體傷亡人數共有<span class="highlight">159人</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>氰中毒對人體的影響</h2>
+        <ul>
+          <li><span class="highlight">阻斷細胞利用氧氣</span>：乳酸中毒、昏迷、心肺功能停止</li>
+          <li><span class="highlight">血氧正常≠安全</span>，細胞仍可能無法利用氧氣</li>
+          <li>現場有可能和CO雙重中毒</li>
+          <li>現場沒有解毒劑只能送醫後等待診斷，延誤黃金救治時間</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>羥鈷胺的特性與優勢</h2>
+        <ul>
+          <li>直接與氰離子<span class="highlight">強力結合排出</span>為無毒的氫鈷氨</li>
+          <li>維生素B12的前驅物(<span class="highlight">安全性高</span>)</li>
+          <li>皮膚與尿液暫時變紅但不影響生命徵象與器官功能</li>
+          <li>IV與IO皆可給藥，<span class="highlight">無低血壓副作用</span>、不影響CPR</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-buttons">
+        <button class="tab-button active" onclick="openTab(event, 'evidence')">科學證據支持</button>
+        <button class="tab-button" onclick="openTab(event, 'international')">國際應用案例</button>
+        <button class="tab-button" onclick="openTab(event, 'timeline')">研究發展時間軸</button>
+        <button class="tab-button" onclick="openTab(event, 'implementation')">建議配置方式</button>
+      </div>
+
+      <div id="evidence" class="tab-content active">
+        <h2>科學證據支持</h2>
+        <p>雖然截至目前，尚缺乏大規模隨機對照試驗（RCT）專門針對火場吸入性氰化物中毒使用羥鈷胺的療效比較，但現有文獻與國際指引均支持其使用。</p>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>文獻</th>
+              <th>用途</th>
+              <th>重點摘要</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Baud FJ et al., 1991</td>
+              <td>支持火場氰中毒風險</td>
+              <td>火場吸入患者中血氰化物濃度高，是推動臨床介入依據</td>
+            </tr>
+            <tr>
+              <td>Kirk MA et al., 1993</td>
+              <td>傳統療法效益有限性</td>
+              <td>CO/HCN聯合中毒中，硝酸鹽治療可能限制清除效率</td>
+            </tr>
+            <tr>
+              <td>Borron SW et al., 2007</td>
+              <td>核心臨床效益研究</td>
+              <td>69名火場吸入患者給羥鈷胺，存活率72%，無重大副作用</td>
+            </tr>
+            <tr>
+              <td>Fortin JL et al., 2006</td>
+              <td>實務操作經驗</td>
+              <td>巴黎消防局8年羥鈷胺現場應用經驗，安全且實用</td>
+            </tr>
+            <tr>
+              <td>Shepherd & Velez, 2008</td>
+              <td>系統性回顧</td>
+              <td>支持羥鈷胺在火場、兒童、孕婦使用，安全性高</td>
+            </tr>
+            <tr>
+              <td>AHA 2023 專項更新</td>
+              <td>國際權威建議</td>
+              <td>推薦羥鈷胺為火場氰中毒首選解毒劑</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="chart-container">
+          <canvas id="survivalChart"></canvas>
+        </div>
+      </div>
+
+      <div id="international" class="tab-content">
+        <h2>國際應用案例</h2>
+        <p>全球多個消防與急救單位已將羥鈷胺納入標準配備，並有成功救治案例：</p>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>地點</th>
+              <th>內容摘要</th>
+              <th>實施成效</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>紐約市消防局 (FDNY)🇺🇸</td>
+              <td>2024年，消防員於火場中OHCA，現場CPR＋羥鈷胺後成功救回並出院</td>
+              <td>成功救治重症患者</td>
+            </tr>
+            <tr>
+              <td>塔爾薩消防局 (Tulsa FD)🇺🇸</td>
+              <td>已將羥鈷胺列為標準配備，成功救治火場中毒兒童</td>
+              <td>特殊族群(兒童)應用成功</td>
+            </tr>
+            <tr>
+              <td>紐約州Ulster County EMS🇺🇸</td>
+              <td>縣級層級推動Cyanokit現場使用計畫，裝備高風險單位</td>
+              <td>系統性政策推行</td>
+            </tr>
+            <tr>
+              <td>法國巴黎消防局🇫🇷</td>
+              <td>8年間系統性施用羥鈷胺於火場患者，證實安全有效</td>
+              <td>長期追蹤證實效益</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="chart-container">
+          <canvas id="globalImplementationChart"></canvas>
+        </div>
+      </div>
+
+      <div id="timeline" class="tab-content">
+        <h2>羥鈷胺研究與應用時間軸</h2>
+        
+        <div class="timeline">
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>早期研究發現</h3>
+              <p class="date">1991</p>
+              <p>Baud FJ等人發表研究，證實火場吸入患者血氰化物濃度高，為臨床介入提供依據</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>傳統療法限制性研究</h3>
+              <p class="date">1993</p>
+              <p>Kirk MA等人研究顯示CO/HCN聯合中毒中，傳統硝酸鹽治療可能限制清除效率</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>法國巴黎實務應用</h3>
+              <p class="date">1998-2006</p>
+              <p>巴黎消防局8年間系統性施用羥鈷胺於火場患者，Fortin JL等人發表研究證實安全有效</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>FDA核准Cyanokit®</h3>
+              <p class="date">2006</p>
+              <p>FDA核准羥鈷胺產品Cyanokit®，明確說明劑量與安全性</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>核心臨床效益研究</h3>
+              <p class="date">2007</p>
+              <p>Borron SW等人研究顯示69名火場吸入患者給羥鈷胺，存活率達72%，無重大副作用</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>系統性回顧</h3>
+              <p class="date">2008</p>
+              <p>Shepherd & Velez發表系統性回顧，支持羥鈷胺在火場、兒童、孕婦使用，安全性高</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>AHA專項更新</h3>
+              <p class="date">2023</p>
+              <p>美國心臟協會(AHA)發布專項更新，推薦羥鈷胺為火場氰中毒首選解毒劑</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="implementation" class="tab-content">
+        <h2>建議配置方式與實施策略</h2>
+        
+        <div class="implementation">
+          <h3>配置方式選項</h3>
+          <p>此藥物Cyanokit®目前單價較高約四萬五千元，效期三年，可以視資源多寡考慮幾種配置方式：</p>
+          
+          <div class="implementation-methods">
+            <div class="method-card">
+              <h4>方案一：各大隊配置</h4>
+              <p>配置在各大隊，由輪值的中隊攜帶至火災現場。</p>
+              <p><strong>優點：</strong>覆蓋範圍廣，反應時間快</p>
+              <p><strong>缺點：</strong>資源需求大，成本較高</p>
+            </div>
+            
+            <div class="method-card">
+              <h4>方案二：特搜分隊配置</h4>
+              <p>配置在TP PLUS或RIT特搜分隊，攜帶至火災現場，如沒有PLUS的大隊需PLUS及RIT分隊輪值覆蓋。</p>
+              <p><strong>優點：</strong>資源集中，專業人員使用</p>
+              <p><strong>缺點：</strong>覆蓋時間可能有限</p>
+            </div>
+            
+            <div class="method-card">
+              <h4>方案三：醫院儲備網合作</h4>
+              <p>與衛福部解毒劑儲備網合作，放置在轄區醫院，派車前往急診拿取。</p>
+              <p><strong>優點：</strong>減少藥物過期浪費，成本分擔</p>
+              <p><strong>缺點：</strong>取藥時間延長</p>
+            </div>
+          </div>
+          
+          <h3>優先應用情境</h3>
+          <p>在藥物數量並不多時，可選擇以下情況攜帶到火災現場：</p>
+          
+          <div class="scenario">
+            <p class="scenario-title">初期資訊疑似有民眾受困</p>
+            <p>當火災現場初步資訊顯示可能有人員受困時，尤其是在密閉空間內</p>
+          </div>
+          
+          <div class="scenario">
+            <p class="scenario-title">消防員MAYDAY案件</p>
+            <p>消防員在火場遇險呼救時，可能已暴露於高濃度有毒氣體中</p>
+          </div>
+          
+          <div class="scenario">
+            <p class="scenario-title">特殊火災案件</p>
+            <p>包括地下室、大型火場或大樓火警等，這些場所通常有較高的有毒氣體濃度</p>
+          </div>
+        </div>
+        
+        <div class="quote">
+          <p>「不準備，是選擇放棄可能活下來的人。」</p>
+          <p>"To not prepare is to give up on someone who could've survived."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>資料來源：EMTP 張鐘嘉 | 新北市消防局 | 2025年製作</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // 切換標籤頁
+    function openTab(evt, tabName) {
+      var i, tabContent, tabButtons;
+      
+      tabContent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabContent.length; i++) {
+        tabContent[i].className = tabContent[i].className.replace(" active", "");
+      }
+      
+      tabButtons = document.getElementsByClassName("tab-button");
+      for (i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].className = tabButtons[i].className.replace(" active", "");
+      }
+      
+      document.getElementById(tabName).className += " active";
+      evt.currentTarget.className += " active";
+    }
+
+    // 圖表數據
+    document.addEventListener('DOMContentLoaded', function() {
+      // 存活率圖表
+      var survivalCtx = document.getElementById('survivalChart').getContext('2d');
+      var survivalChart = new Chart(survivalCtx, {
+        type: 'bar',
+        data: {
+          labels: ['使用羥鈷胺', '傳統治療'],
+          datasets: [{
+            label: '火場吸入氰化物中毒患者存活率',
+            data: [72, 45],
+            backgroundColor: [
+              '#457b9d',
+              '#e63946'
+            ],
+            borderColor: [
+              '#1d3557',
+              '#1d3557'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: {
+                display: true,
+                text: '存活率(%)'
+              }
+            }
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: 'Borron SW et al., 2007 研究結果',
+              font: {
+                size: 16
+              }
+            }
+          }
+        }
+      });
+
+      // 全球實施情況圖表
+      var implementationCtx = document.getElementById('globalImplementationChart').getContext('2d');
+      var implementationChart = new Chart(implementationCtx, {
+        type: 'pie',
+        data: {
+          labels: ['已實施', '進行中', '尚無實施'],
+          datasets: [{
+            label: '全球消防單位羥鈷胺實施情況',
+            data: [42, 28, 30],
+            backgroundColor: [
+              '#457b9d',
+              '#a8dadc',
+              '#e63946'
+            ],
+            borderColor: [
+              '#ffffff',
+              '#ffffff',
+              '#ffffff'
+            ],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: '主要國家消防單位羥鈷胺導入情況估計',
+              font: {
+                size: 16
+              }
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
